@@ -20,12 +20,13 @@ agilent3631A_DBD += base.dbd
 agilent3631A_DBD += stream.dbd
 agilent3631A_DBD += asyn.dbd
 agilent3631A_DBD += drvAsynSerialPort.dbd
-agilent3631A_DBD += drv488Gpib.dbd
+#agilent3631A_DBD += drv488Gpib.dbd
+agilent3631A_DBD += devIocStats.dbd
 
 # Add all the support libraries needed by this IOC
 #agilent3631A_LIBS += xxx
 agilent3631A_LIBS += stream
-agilent3631A_LIBS += asyn
+agilent3631A_LIBS += asyn devIocStats
 
 # agilent3631A_registerRecordDeviceDriver.cpp derives from agilent3631A.dbd
 agilent3631A_SRCS += agilent3631A_registerRecordDeviceDriver.cpp

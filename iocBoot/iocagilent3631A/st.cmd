@@ -5,6 +5,9 @@
 
 < envPaths
 
+epicsEnvSet "IOCNAME" "$(P=$(MYPVPREFIX))AGILENT3631A"
+epicsEnvSet "IOCSTATS_DB" "$(DEVIOCSTATS)/db/iocAdminSoft.db"
+
 cd ${TOP}
 
 ## Register all support components
@@ -12,7 +15,7 @@ dbLoadDatabase "dbd/agilent3631A.dbd"
 agilent3631A_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
-#dbLoadRecords("db/xxx.db","user=kvlb23Host")
+dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

@@ -6,8 +6,8 @@
 < envPaths
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/db"
 
-epicsEnvSet "P" "$(P=$(MYPVPREFIX))"
-epicsEnvSet "R" "$(R=A3631:PSU:)"
+epicsEnvSet "IOCNAME" "$(P=$(MYPVPREFIX))A3631:PSU"
+epicsEnvSet "IOCSTATS_DB" "$(DEVIOCSTATS)/db/iocAdminSoft.db"
 
 cd ${TOP}
 
@@ -17,15 +17,12 @@ agilent3631A_registerRecordDeviceDriver pdbbase
 
 #Set up the GPIB access
 GpibBoardDriverConfig("GPIB0","1","0","3","0")
-
-
 asynOctetSetInputEos("GPIB0", 1, "\n")
 asynOctetSetOutputEos("GPIB0", 1, "\n")
 
-
-
 ## Load record instances
-dbLoadRecords("db/devagilent3631A.db","P=$(P),R=$(R),PORT=GPIB0,A=1")
+dbLoadRecords("db/devagilent3631A.db","P=$(IOCNAME),R=:,PORT=GPIB0,A=1")
+dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

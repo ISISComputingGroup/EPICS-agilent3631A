@@ -4,10 +4,11 @@
 ## everywhere it appears in this file
 
 < envPaths
-epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/db"
 
-epicsEnvSet "P" "$(P=$(MYPVPREFIX))"
-epicsEnvSet "R" "$(R=A3631:PSU:)"
+epicsEnvSet "IOCNAME" "$(P=$(MYPVPREFIX))A3631:PSU"
+epicsEnvSet "IOCSTATS_DB" "$(DEVIOCSTATS)/db/iocAdminSoft.db"
+
+epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/db"
 epicsEnvSet "TTY" "$(TTY=\\\\\\\\.\\\\COM20)"
 
 cd ${TOP}
@@ -25,10 +26,9 @@ asynSetOption("L0", -1, "stop", "1")
 asynOctetSetInputEos("L0", -1, "\r\n")
 asynOctetSetOutputEos("L0", -1, "\r\n")
 
-
-
 ## Load record instances
-dbLoadRecords("db/devagilent3631A.db","P=$(P),R=$(R),PORT=L0,A=0")
+dbLoadRecords("db/devagilent3631A.db","P=$(IOCNAME),R=:,PORT=L0,A=0")
+dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit

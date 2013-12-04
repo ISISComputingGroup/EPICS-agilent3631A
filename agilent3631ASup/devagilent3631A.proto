@@ -1,55 +1,46 @@
 getIDN {
     out "*IDN?";
-    in "%\$1[^\r\n]";
+    #Read no more that 39 chars (EPICS limit)
+    in "%/(.{0,39})/";
     ExtraInput = Ignore;
 }
 
-cmd {
-    out "\$1";
+read_current {
+    out "MEAS:CURR?"; 
+    in "%f";
+	ExtraInput = Ignore;
 }
 
-setD {
-    out "\$1 %d";
+write_current {
+    out "CURR %f";
 }
-getD {
-    out "\$1?";
+
+read_voltage {
+    out "MEAS:VOLT?"; 
+    in "%f";
+	ExtraInput = Ignore;
+}
+
+write_voltage {
+    out "VOLT %f";
+}
+
+read_output_status{
+    out "OUTP?"; 
     in "%d";
-    ExtraInput = Ignore;
-}
-
-#Additional I/O for all devices
-#Wait set at 200 for agilent3631A as device is slow
-read_float {
-    out "\$1?"; in "%f";
 	ExtraInput = Ignore;
 }
 
-write_float {
-    out "\$1 %e";
-	wait 200;
+write_output_status{
+    out "OUTP %d"; 
 }
 
-read_int {
-    out "\$1?"; in "%d";
-    ExtraInput = Ignore;
-}
-
-write_int {
-    out "\$1 %d";
-	wait 200;
-}
-
-read_string {
-    out "\$1?"; in "%s";
+read_error_status{
+    out "SYST:ERR?";
+    in "%s";
 	ExtraInput = Ignore;
 }
 
-write_string {
-    out "\$1 %s";
-	wait 200;
-}
-
-#Additional I/O for Agilent 3631A
-setLocRem {
+set_Local_Remote {
     out "SYST:%{LOC|REM}";
 }

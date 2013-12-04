@@ -20,5 +20,3 @@ dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
 cd ${TOP}/iocBoot/${IOC}
 iocInit
 
-## Start any sequence programs
-#seq sncxxx,"user=kvlb23Host"

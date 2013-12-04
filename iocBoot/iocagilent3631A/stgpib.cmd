@@ -6,7 +6,7 @@
 < envPaths
 epicsEnvSet "STREAM_PROTOCOL_PATH" "$(TOP)/db"
 
-epicsEnvSet "IOCNAME" "$(P=$(MYPVPREFIX))A3631:PSU"
+epicsEnvSet "IOCNAME" "$(P=$(MYPVPREFIX))AG3631A"
 epicsEnvSet "IOCSTATS_DB" "$(DEVIOCSTATS)/db/iocAdminSoft.db"
 
 cd ${TOP}
@@ -21,11 +21,8 @@ asynOctetSetInputEos("GPIB0", 1, "\n")
 asynOctetSetOutputEos("GPIB0", 1, "\n")
 
 ## Load record instances
-dbLoadRecords("db/devagilent3631A.db","P=$(IOCNAME),R=:,PORT=GPIB0,A=1")
+dbLoadRecords("db/devagilent3631A.db","P=$(IOCNAME):,R=:,PORT=GPIB0,A=1")
 dbLoadRecords("$(IOCSTATS_DB)","IOC=$(IOCNAME)")
 
 cd ${TOP}/iocBoot/${IOC}
 iocInit
-
-## Start any sequence programs
-#seq sncxxx,"user=kvlb23Host"

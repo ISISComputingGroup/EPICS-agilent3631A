@@ -36,6 +36,7 @@ record(ai, "$(P)CURRENT")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
 }
 
 record(ao, "$(P)CURRENT:SP")
@@ -45,6 +46,7 @@ record(ao, "$(P)CURRENT:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT:SP")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "A")
 }
 
 alias("$(P)CURRENT", "$(P)CURRENT:SP:RBV")
@@ -58,6 +60,7 @@ record(ai, "$(P)VOLT")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
 }
 
 record(ao, "$(P)VOLT:SP")
@@ -67,6 +70,7 @@ record(ao, "$(P)VOLT:SP")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:VOLT:SP")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
 }
 
 alias("$(P)CURRENT", "$(P)VOLT:SP:RBV")
@@ -81,6 +85,7 @@ record(bi, "$(P)OUTPUT_STATUS")
     field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:CURRENT")
     field(SDIS, "$(P)DISABLE")
+	field(EGU, "V")
 }
 
 record(bo, "$(P)OUTPUT_STATUS:SP")
@@ -112,6 +117,7 @@ record(ai, "$(P)SIM:CURRENT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(EGU, "A")
 }
 
 alias("$(P)SIM:CURRENT","$(P)SIM:CURRENT:SP")
@@ -122,6 +128,7 @@ record(ai, "$(P)SIM:VOLT")
 {
     field(SCAN, "Passive")
     field(DTYP, "Soft Channel")
+	field(EGU, "V")
 }
 
 alias("$(P)SIM:VOLT","$(P)SIM:VOLT:SP")

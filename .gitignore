@@ -12,3 +12,7 @@ runIOC.bat
 runIOC.sh
 relPaths.sh
 .project
+__pycache__/
+*.py[cod]
+*$py.class
+/test-reports/
